@@ -496,12 +496,24 @@ const pricing = () => layout({
   description: `Upfront carpet cleaning prices in Houston: ${$.specialRooms} rooms for $${$.specialPrice}, $${$.room} per extra room, sofas $${$.sofa}, tile $${$.tileSqft}/sq ft. Pristine Club $${$.club}/mo. Estimate calculator and quote form.`,
   schema: [crumbSchema([['Home', '/'], ['Pricing', '/pricing/']])],
   body: `
-<section class="phero" aria-labelledby="p-h">
+<section class="hero hero-page" aria-labelledby="p-h">
   <div class="hero-lines" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Pricing</span></nav>
-    <h1 id="p-h">Simple prices, confirmed before we start</h1>
-    <p class="hero-lede">No upsell surprises at the end. We walk through your home, confirm the total, and only then start cleaning.</p>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Pricing</span></nav>
+      <h1 id="p-h">Simple prices, confirmed before we start</h1>
+      <p class="hero-lede">No upsell surprises at the end. We walk through your home, confirm the total, and only then start cleaning.</p>
+      ${proofList()}
+    </div>
+    <figure class="hero-media">
+      ${picture('upholstery', { eager: true, w: 900, h: 760, sizes: '(min-width: 960px) 44vw, 100vw', set: [[600, 375], [900, 760], [1300, 1100]] })}
+      <figcaption class="tagcard">
+        <span class="tagcard-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="tagcard-k">Pristine Club</span>
+        <strong>${money($.club)}<small>/mo</small></strong>
+        <span class="tagcard-s">4 deep cleanings a year</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
