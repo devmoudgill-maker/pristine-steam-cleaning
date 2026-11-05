@@ -32,6 +32,13 @@
     const totalEl = $('#calc-total');
     const linesEl = $('#calc-lines');
     const noteEl = $('#calc-note');
+    const peekEl = $('#calc-peek-total');
+    const peek = $('#calc-peek');
+    const out = $('.calc-out', calc);
+    // phones: hide the sticky total once the full total card is on screen
+    if (peek && out && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => peek.classList.toggle('is-hidden', e.isIntersecting), { threshold: 0.35 }).observe(out);
+    }
     let shown = 0;
 
     const animateTo = (target) => {
@@ -86,6 +93,7 @@
         : '<li class="is-empty"><span>Nothing added yet</span><span>$0</span></li>';
       noteEl.textContent = note;
       animateTo(Math.round(total * 100) / 100);
+      if (peekEl) peekEl.textContent = fmt(Math.round(total * 100) / 100);
 
       estimateText = lines.length
         ? `Estimate: ${lines.map(([l, c]) => `${l} ${fmt(c)}`).join(', ')}. Total about ${fmt(total)}.`
@@ -97,11 +105,24 @@
       input.value = Math.max(0, Math.min(+input.max, (+input.value || 0) + +b.dataset.dir));
       update();
     }));
-    inputs.forEach((i) => i.addEventListener('input', update));
+    // show the clamped value while typing, not only after blur
+    inputs.forEach((i) => i.addEventListener('input', () => {
+      if (i.value !== '' && +i.value > +i.max) i.value = i.max;
+      if (+i.value < 0) i.value = 0;
+      update();
+    }));
     inputs.forEach((i) => i.addEventListener('blur', () => { i.value = Math.max(0, Math.floor(+i.value || 0)); update(); }));
     shown = +totalEl.textContent.replace(/[^0-9.]/g, '') || 0;
     update();
   }
+
+  // ---------- before / after slider (only exists once real photos are in PROOF) ----------
+  $$('[data-ba]').forEach((frame) => {
+    const range = $('.ba-range', frame);
+    const set = () => frame.style.setProperty('--p', range.value);
+    range.addEventListener('input', set);
+    set();
+  });
 
   // ---------- quote form (text-message fallback until Jobber embed is added) ----------
   const form = $('#quote-form');

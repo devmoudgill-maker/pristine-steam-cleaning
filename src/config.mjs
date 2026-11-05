@@ -25,6 +25,19 @@ export const SOCIAL = {
 // While this is empty, the quote form prepares a text message to BIZ.phone instead.
 export const JOBBER_EMBED = '';
 
+// Trust sections stay hidden until real content is added here. Never put invented
+// reviews or results in this block. Photos go in static/photos/ (served at /assets/photos/).
+export const PROOF = {
+  // rating: { score: 4.9, count: 37, url: 'https://g.page/r/...' },  // from the Google Business Profile
+  rating: null,
+  // reviews: [{ name: 'Maria G.', area: 'Katy', text: 'Exact words from the review.' }],
+  reviews: [],
+  // beforeAfter: [{ before: 'living-room-before.jpg', after: 'living-room-after.jpg', label: 'Living room, Katy' }],
+  beforeAfter: [],
+  // owner: { name: 'Abood Yahya', photo: 'abood.jpg', text: 'A few sentences in his own words.' },
+  owner: null,
+};
+
 export const PRICES = {
   specialPrice: 98,
   specialRooms: 3,
@@ -49,8 +62,8 @@ export const POLICY = {
 
 // Unsplash and Pexels photos (free licenses). Swap for real job photos when they exist.
 export const PHOTOS = {
-  hero: { id: 'photo-1628745750110-c8ddcdad2c15', alt: 'Bright living room with a gray sectional on a freshly cleaned light carpet' },
-  carpet: { pexels: '6692902', pos: '72% 70%', alt: 'Parent and toddler playing on a soft, clean cream carpet' },
+  hero: { pexels: '6692902', pos: '70% 60%', alt: 'Parent and toddler playing on a soft, clean cream carpet' },
+  carpet: { pexels: '35964344', pos: '50% 60%', alt: 'Blue sofa resting on a clean, textured carpet' },
   upholstery: { id: 'photo-1686178827149-6d55c72d81df', alt: 'Upholstery extraction tool pulling dirt out of a gray fabric ottoman' },
   tile: { id: 'photo-1605696420965-9247f11e1acd', alt: 'Terracotta saltillo tile floor with grout lines, the kind found in many Houston homes' },
   pet: { id: 'photo-1591722430978-61b0d6fa30bb', alt: 'Small tan dog lying on a soft beige carpet' },
