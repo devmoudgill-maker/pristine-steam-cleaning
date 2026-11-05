@@ -47,10 +47,10 @@ export const POLICY = {
   clubRooms: 3, // rooms included in each club cleaning
 };
 
-// Unsplash photos (free license). Swap for real job photos when they exist.
+// Unsplash and Pexels photos (free licenses). Swap for real job photos when they exist.
 export const PHOTOS = {
   hero: { id: 'photo-1628745750110-c8ddcdad2c15', alt: 'Bright living room with a gray sectional on a freshly cleaned light carpet' },
-  carpet: { id: 'photo-1527515637462-cff94eecc1ac', alt: 'Confetti scattered across a plush carpet after a party, mid-clean' },
+  carpet: { pexels: '6692902', pos: '72% 70%', alt: 'Parent and toddler playing on a soft, clean cream carpet' },
   upholstery: { id: 'photo-1686178827149-6d55c72d81df', alt: 'Upholstery extraction tool pulling dirt out of a gray fabric ottoman' },
   tile: { id: 'photo-1605696420965-9247f11e1acd', alt: 'Terracotta saltillo tile floor with grout lines, the kind found in many Houston homes' },
   pet: { id: 'photo-1591722430978-61b0d6fa30bb', alt: 'Small tan dog lying on a soft beige carpet' },
@@ -60,5 +60,7 @@ export const PHOTOS = {
 
 export const img = (key, w, h, q = 72) => {
   const p = PHOTOS[key];
+  // with `pos`, fetch the uncropped frame and let CSS object-position choose the crop
+  if (p.pexels) return `https://images.pexels.com/photos/${p.pexels}/pexels-photo-${p.pexels}.jpeg?auto=compress&cs=tinysrgb&w=${w}${h && !p.pos ? `&h=${h}&fit=crop` : ''}`;
   return `https://images.unsplash.com/${p.id}?auto=format&fit=crop&w=${w}${h ? `&h=${h}` : ''}&q=${q}`;
 };

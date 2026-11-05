@@ -11,7 +11,7 @@ Static multi-page site for pristinesteamcleaning.co (Houston residential carpet 
 | Jobber request form | `src/config.mjs` → `JOBBER_EMBED` (paste the full embed snippet) |
 | Prices | `src/config.mjs` → `PRICES` |
 | Policy numbers (cancellation fees, late fee, etc.) | `src/config.mjs` → `POLICY` |
-| Photos | `src/config.mjs` → `PHOTOS` (Unsplash for now) |
+| Photos | `src/config.mjs` → `PHOTOS` (Unsplash `id` or Pexels `pexels` id for now) |
 | City pages | `src/cities.mjs` |
 | Terms, Service Agreement, Privacy | `src/legal.mjs` |
 | Page layouts | `build.mjs` |

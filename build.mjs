@@ -37,7 +37,7 @@ const brandIcon = (name) => {
 // ---------- images ----------
 const srcset = (key, sizes) => sizes.map(([w, h]) => `${img(key, w, h)} ${w}w`).join(', ');
 const picture = (key, { sizes, set, w, h, eager = false, cls = '' }) =>
-  `<img class="${cls}" src="${img(key, set.at(-1)[0], set.at(-1)[1])}" srcset="${srcset(key, set)}" sizes="${sizes}" width="${w}" height="${h}" alt="${esc(PHOTOS[key].alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+  `<img class="${cls}" src="${img(key, set.at(-1)[0], set.at(-1)[1])}" srcset="${srcset(key, set)}" sizes="${sizes}" width="${w}" height="${h}" alt="${esc(PHOTOS[key].alt)}"${PHOTOS[key].pos ? ` style="object-position:${PHOTOS[key].pos}"` : ''} ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
 
 // ---------- shared pieces ----------
 const logo = (extra = '') => `<a class="logo" href="/" aria-label="${BIZ.name}, home" ${extra}><span class="logo-lines" aria-hidden="true"><i></i><i></i><i></i></span><span class="logo-word" aria-hidden="true">PRISTINE</span></a>`;
@@ -191,6 +191,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://images.pexels.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&text=PRISTINE&display=block">
 <link rel="stylesheet" href="/assets/styles.css?v=${ASSET_V}">
